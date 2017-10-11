@@ -4,6 +4,7 @@ from PIL import Image
 import config
 import telebot
 
+token=OpenSSL::PKey::RSA.new(ENV['token'])
 bot=telebot.TeleBot(token)
 
 def str(message): #Удаление команды из строки
