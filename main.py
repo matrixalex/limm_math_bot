@@ -1,10 +1,11 @@
 ﻿# -*- coding: utf-8 -*-
 
 from PIL import Image
+from boto.s3.connection import S3Connection
 import config
 import telebot
 
-token=OpenSSL::PKey::RSA.new(ENV['token'])
+token = S3Connection(os.environ['token'])
 bot=telebot.TeleBot(token)
 
 def str(message): #Удаление команды из строки
