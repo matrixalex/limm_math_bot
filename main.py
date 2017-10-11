@@ -23,11 +23,6 @@ def handle_echo(message):
     message.text=str(message)
     bot.send_message(message.chat.id, message.text)
 
-@bot.message_handler(commands=['hui'])
-def handle_hui(message):
-    message.text=str(message)
-    bot.send_message(message.chat.id, message.text)
-
 @bot.message_handler(commands=['photo'])
 def handle_photo(message):
     photo = open('image1.jpg', 'r')
