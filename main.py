@@ -4,7 +4,7 @@ from PIL import Image
 from boto.s3.connection import S3Connection
 import config
 import telebot
-import parser from bot_path
+import parser
 
 token = S3Connection(os.environ['token'])
 bot=telebot.TeleBot(token)
