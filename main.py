@@ -6,6 +6,7 @@ import config
 import telebot
 
 token = S3Connection(os.environ['token'])
+token = '439470650:AAHup458zfpbjGp4c_78E4nMuzcSlRzIcv0'
 bot=telebot.TeleBot(token)
 
 def str(message): #Удаление команды из строки
