@@ -4,9 +4,9 @@ from PIL import Image
 from boto.s3.connection import S3Connection
 import config
 import telebot
+import parser from bot_path
 
 token = S3Connection(os.environ['token'])
-token = '439470650:AAHup458zfpbjGp4c_78E4nMuzcSlRzIcv0'
 bot=telebot.TeleBot(token)
 
 def str(message): #Удаление команды из строки
@@ -30,5 +30,10 @@ def handle_echo(message):
 def handle_photo(message):
     photo = open('image1.jpg', 'r')
     bot.send_photo(message.chat.id, photo)
+    
+@bot.message_handler(commands=['solve'])
+def handle_solve(message):
+    message.text=str(message)
+    bot.send_message(message.chat.id, parser.eval_(message.text))
 
 bot.polling()
