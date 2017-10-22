@@ -6,13 +6,15 @@ import config
 import telebot
 import parser
 import os
+import requests  
 from flask import Flask, request
-
-server = Flask(__name__)
 
 token = S3Connection(os.environ['token'])
 token = '439470650:AAHup458zfpbjGp4c_78E4nMuzcSlRzIcv0'
 bot=telebot.TeleBot(token)
+
+PORT = int(os.environ.get('PORT', '5000'))
+updater = Updater(token)
 
 def str(message): #Удаление команды из строки
     if message.text[0]=='/':
@@ -41,16 +43,8 @@ def handle_photo(message):
     photo = open('image1.jpg', 'r')
     bot.send_photo(message.chat.id, photo)
 
-@server.route("/bot", methods=['POST'])
-def getMessage():
-    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-    return "!", 200
-
-@server.route("/")
-def webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url="https://limm-math-bot.herokuapp.com/bot")
-    return "!", 200
-
-server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
-server = Flask(__name__)
+updater.start_webhook(listen="0.0.0.0",
+                      port=PORT,
+                      url_path=token)
+updater.bot.set_webhook("https://limm-math-bot.herokuapp.com/" + token)
+updater.idle()
