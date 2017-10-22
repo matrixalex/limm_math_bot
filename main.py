@@ -40,5 +40,16 @@ def handle_photo(message):
     photo = open('image1.jpg', 'r')
     bot.send_photo(message.chat.id, photo)
 
+@server.route("/bot", methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "!", 200
+
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url="https://herokuProject_url/bot")
+    return "!", 200
+
 server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
 server = Flask(__name__)
