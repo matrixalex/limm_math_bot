@@ -26,15 +26,15 @@ def handle_echo(message):
     message.text=str(message)
     bot.send_message(message.chat.id, message.text)
 
+@bot.message_handler(commands=['solve'])
+def handle_hui(message):
+    message.text=str(message)
+    bot.send_message(message.chat.id, parser.eval_(message.text))
+
 @bot.message_handler(commands=['photo'])
 def handle_photo(message):
     photo = open('image1.jpg', 'r')
     bot.send_photo(message.chat.id, photo)
-    
-@bot.message_handler(commands=['solve'])
-def handle_solve(message):
-    message.text=str(message)
-    bot.send_message(message.chat.id, parser.eval_(message.text))
 
 if __name__ == '__main__':
-    bot.polling(none_stop=True)
+     bot.polling(none_stop=True)
