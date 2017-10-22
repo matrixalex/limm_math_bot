@@ -1,57 +1,80 @@
-﻿# -*- coding: utf-8 -*-
-
-from PIL import Image
-from boto.s3.connection import S3Connection
-import config
-import telebot
-import parser
-import os
 import requests  
-from flask import Flask, request
+import datetime
+ 
+class BotHandler:
+ 
+    def __init__(self, token):
+        self.token = token
+        self.api_url = "https://api.telegram.org/bot{}/".format(token)
+ 
+    def get_updates(self, offset=None, timeout=30):
+        method = 'getUpdates'
+        params = {'timeout': timeout, 'offset': offset}
+        print("2.5")
+        print(self.api_url)
+        resp = requests.get(self.api_url + method, params)
+        print(resp)
+        print("3")
+        result_json = resp.json()['result']
+        print("4")
+        return result_json
+ 
+    def send_message(self, chat_id, text):
+        params = {'chat_id': chat_id, 'text': text}
+        method = 'sendMessage'
+        resp = requests.post(self.api_url + method, params)
+        return resp
+ 
+    def get_last_update(self):
+        get_result = self.get_updates()
+ 
+        if len(get_result) > 0:
+            last_update = get_result[-1]
+        else:
+            last_update = get_result[len(get_result)]
+ 
+        return last_update
 
-token = S3Connection(os.environ['token'])
-token = '439470650:AAHup458zfpbjGp4c_78E4nMuzcSlRzIcv0'
-bot = telebot.TeleBot(token)
-
-server = Flask(__name__)
-
-def str(message): #Удаление команды из строки
-    if message.text[0]=='/':
-        #temp='\\'+command+' '
-        #message.text=message.text.replace(temp,'')
-        message.text=message.text.split(" ")
-        result=''
-        i=1
-        while i<len(message.text):
-            result=result+' '+message.text[i]
-            i=i+1
-    return result
-
-@bot.message_handler(commands=['echo'])
-def handle_echo(message):
-    message.text=str(message)
-    bot.send_message(message.chat.id, message.text)
-
-@bot.message_handler(commands=['solve'])
-def handle_hui(message):
-    message.text=str(message)
-    bot.send_message(message.chat.id, parser.eval_(message.text))
-
-@bot.message_handler(commands=['photo'])
-def handle_photo(message):
-    photo = open('image1.jpg', 'r')
-    bot.send_photo(message.chat.id, photo)
-
-@server.route("/bot", methods=['POST'])
-def getMessage():
-    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-    return "!", 200
-
-@server.route("/")
-def webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url="https://limm-math-bot.herokuapp.com/bot")
-    return "!", 200
-
-server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
-server = Flask(__name__)
+token = "439470650:AAHup458zfpbjGp4c_78E4nMuzcSlRzIcv0"
+greet_bot = BotHandler(token)  
+greetings = ('zdravstvui', 'privet', 'qu', 'zdorovo')  
+now = datetime.datetime.now()
+print(now)
+ 
+ 
+def main():  
+    new_offset = None
+    today = now.day
+    hour = now.hour
+ 
+    while True:
+    	print("1")
+        greet_bot.get_updates(new_offset)
+        print("2")
+ 
+        last_update = greet_bot.get_last_update()
+ 
+        last_update_id = last_update['update_id']
+        last_chat_text = last_update['message']['text']
+        last_chat_id = last_update['message']['chat']['id']
+        last_chat_name = last_update['message']['chat']['first_name']
+ 
+        if last_chat_text.lower() in greetings and today == now.day and 6 <= hour < 12:
+            greet_bot.send_message(last_chat_id, 'Dobroye utro, {}'.format(last_chat_name))
+            today += 1
+ 
+        elif last_chat_text.lower() in greetings and today == now.day and 12 <= hour < 17:
+            greet_bot.send_message(last_chat_id, 'Dobriy den\', {}'.format(last_chat_name))
+            today += 1
+ 
+        elif last_chat_text.lower() in greetings and today == now.day and 17 <= hour < 23:
+            greet_bot.send_message(last_chat_id, 'Dobriy vecher, {}'.format(last_chat_name))
+            today += 1
+ 
+        new_offset = last_update_id + 1
+ 
+if __name__ == '__main__':  
+    try:
+        main()
+    except KeyboardInterrupt:
+        exit()
