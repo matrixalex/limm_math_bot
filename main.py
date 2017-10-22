@@ -11,7 +11,7 @@ from flask import Flask, request
 
 token = S3Connection(os.environ['token'])
 token = '439470650:AAHup458zfpbjGp4c_78E4nMuzcSlRzIcv0'
-bot=telebot.TeleBot(token)
+#bot=telebot.TeleBot(token)
 
 PORT = int(os.environ.get('PORT', '5000'))
 updater = Updater(token)
