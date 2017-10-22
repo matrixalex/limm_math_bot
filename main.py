@@ -5,6 +5,10 @@ from boto.s3.connection import S3Connection
 import config
 import telebot
 import parser
+import os
+from flask import Flask, request
+
+server = Flask(__name__)
 
 token = S3Connection(os.environ['token'])
 bot=telebot.TeleBot(token)
@@ -36,5 +40,5 @@ def handle_photo(message):
     photo = open('image1.jpg', 'r')
     bot.send_photo(message.chat.id, photo)
 
-if __name__ == '__main__':
-     bot.polling(none_stop=True)
+server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
+server = Flask(__name__)
