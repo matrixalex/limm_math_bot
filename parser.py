@@ -5,15 +5,15 @@ OPERATORS = {'+' : (1, lambda x, y: x + y),
 			 '-' : (1, lambda x, y: x - y),
 			 '*' : (2, lambda x, y: x * y), 
 			 '/' : (2, lambda x, y: x / y),
-			 '©' : (3, lambda x, y: x*math.cos(y*math.pi/180)), # cos
-			 '$' : (3, lambda x, y: x*math.sin(y*math.pi/180)), # sin
-			 'Ù' : (3, lambda x, y: x*math.tan(y*math.pi/180)), # tg
-			 'ù' : (3, lambda x, y: x*math.tan(y*math.pi/180))} # ctg
+			 '©' : (3, lambda x, y: math.cos(y*math.pi/180)), # cos
+			 '$' : (3, lambda x, y: math.sin(y*math.pi/180)), # sin
+			 'Ù' : (3, lambda x, y: math.tan(y*math.pi/180)), # tg
+			 '¬' : (3, lambda x, y: math.tan(y*math.pi/180))} # ctg
 				 
 CHANGES = {'cos' : '©',
 		   'sin' : '$',
 		   'tg' : 'Ù',
-		   'ctg' : 'ù'}
+		   'ctg' : '¬'}
 
 def eval_(formula):
 
@@ -23,10 +23,10 @@ def eval_(formula):
 		dirty_string=dirty_string.strip()  #удаление пробелов
 		if dirty_string[0] in OPERATORS:			 # это условие и следующикл цикл для "бинаризации" унарных операторов
 			dirty_string = ''+'1'+dirty_string[0:]		 
-		i=0
-		j=1
+		i=1
+		j=2
 		while(j<len(dirty_string)):	             # МММ ООО
-			if (dirty_string[i] in OPERATORS or dirty_string[i] in "()") and (dirty_string[j] in OPERATORS or dirty_string[j] in "()"):
+			if ((dirty_string[i] in OPERATORS or dirty_string[i] in "(") and (dirty_string[j] in OPERATORS)):
 				dirty_string=''+dirty_string[:j]+'1'+dirty_string[j:]+ dirty_string[j+1:]
 				i=i+1
 				j=j+1
