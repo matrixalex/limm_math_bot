@@ -3,7 +3,7 @@
 from PIL import Image
 import telebot
 
-from smither import parser
+import parser
 import config
 import math
 
