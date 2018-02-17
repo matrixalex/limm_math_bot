@@ -6,9 +6,12 @@ import telebot
 import parser
 import config
 import math
-from boto.s3.connection import S3Connection
+import os
 
-telegram = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+is_prod = os.environ.get('IS_HEROKU', None)
+
+if is_prod:
+    token = os.environ.get('bot_token')
 
 bot=telebot.TeleBot(token)
 
