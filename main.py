@@ -6,7 +6,7 @@ import telebot
 import parser
 import config
 import math
-from os import environ
+from boto.s3.connection import S3Connection
 
 
 token=environ.get('token')
