@@ -6,9 +6,10 @@ import telebot
 import parser
 import config
 import math
+from os import environ
 
 
-token=config.token
+token=environ.get('token')
 
 bot=telebot.TeleBot(token)
 
