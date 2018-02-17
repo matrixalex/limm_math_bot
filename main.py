@@ -8,8 +8,7 @@ import config
 import math
 from boto.s3.connection import S3Connection
 
-
-token=environ.get('token')
+telegram = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 
 bot=telebot.TeleBot(token)
 
