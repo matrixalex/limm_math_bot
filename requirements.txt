@@ -1,5 +1,2 @@
-anaconda-client==1.6.9
-anaconda-navigator==1.7.0
-anaconda-project==0.8.2
 numpy==1.14.0
 telebot==0.0.3
