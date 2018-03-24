@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
  
 from enum import Enum
+from os import environ
 
-token = '439470650:AAHup458zfpbjGp4c_78E4nMuzcSlRzIcv0'
-
+token = environ.get('heroku_token')
 
 db_file = "database.vdb"
 
