@@ -4,7 +4,7 @@ from enum import Enum
 from os import environ
 
 token = '414940346:AAFVfcpbR0kKFuQxNayhRckIlRGr0V_2DRE'
-token = environ.get('heroku_token')
+hul = environ.get('heroku_token')
 
 db_file = "database.vdb"
 

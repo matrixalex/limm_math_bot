@@ -31,7 +31,7 @@ def str(message): #Удаление команды из строки
 @bot.message_handler(commands=['echo'])
 def handle_echo(message):
     message.text=str(message)
-    bot.send_message(message.chat.id, message.text)
+    bot.send_message(message.chat.id, config.hull)
 
 @bot.message_handler(commands=['solve'])
 def handle_solve(message):
