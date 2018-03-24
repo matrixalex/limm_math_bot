@@ -1,5 +1,5 @@
 ﻿import numpy as np
-import pyplot as plt
+from matplotlib import pyplot as plt
 from matplotlib import cm
 from mpl_toolkits.mplot3d import axes3d
 import os, sys
