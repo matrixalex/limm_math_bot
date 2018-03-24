@@ -3,7 +3,7 @@
 import telebot
 import math
 
-import Image
+#import Image
 
 import parser
 import config
