@@ -4,6 +4,7 @@ import telebot
 import math
 
 from PIL import Image
+from flask import Flask, request
 
 import parser
 import config
@@ -13,6 +14,7 @@ import dworker
 token=config.token
 
 bot=telebot.TeleBot(token)
+server = Flask(__name__)
 
 def str(message): #Удаление команды из строки
     if message.text[0]=='/':
