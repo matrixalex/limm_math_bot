@@ -7,7 +7,7 @@ import math
 
 import parser
 import config
-#import graphics
+import graphics
 import dworker
 
 token=config.token
