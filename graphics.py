@@ -1,8 +1,8 @@
 ﻿import numpy as np
 import matplotlib as mpl
 mpl.use('Agg')
-from mpl import pyplot as plt
-from mpl import cm
+from matplotlib import pyplot as plt
+from matplotlib import cm
 from mpl_toolkits.mplot3d import axes3d
 import os, sys
 import imageio
