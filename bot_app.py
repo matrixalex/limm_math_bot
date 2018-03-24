@@ -59,5 +59,18 @@ def handle_animate(message):
 	photo = open('movie.gif', 'rb')
 	bot.send_document(message.chat.id, photo)
 
-if __name__ == '__main__':
-    bot.polling(none_stop=True)
+def get_updates_json(request):  
+    params = {'timeout': 100, 'offset': None}
+    response = requests.get(request + 'getUpdates', data=params)
+    return response.json()
+
+def main():  
+    update_id = last_update(get_updates_json(url))['update_id']
+    while True:
+        if update_id == last_update(get_updates_json(url))['update_id']:
+           send_mess(get_chat_id(last_update(get_updates_json(url))), 'test')
+           update_id += 1
+    sleep(1)       
+ 
+if __name__ == '__main__':  
+    main()
