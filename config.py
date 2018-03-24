@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
  
-'''from enum import Enum
-from os import environ			'''
+from enum import Enum
+'''from os import environ			'''
 
 token = '414940346:AAFVfcpbR0kKFuQxNayhRckIlRGr0V_2DRE'
 '''hul = environ.get('heroku_token')  '''
