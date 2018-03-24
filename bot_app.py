@@ -45,7 +45,6 @@ def handle_plot(message):
 	photo = graphics.simple_graph(message.text)
 	bot.send_photo(message.chat.id, photo)
 	bot.send_message(message.chat.id,"Введите левую границу интервала: ")
-	dbworker.set_state(message.chat.id, config.States.S_ENTER_FIRST.value)
 
 
 @bot.message_handler(commands=['photo'])
