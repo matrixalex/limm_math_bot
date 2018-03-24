@@ -3,7 +3,7 @@
 import telebot
 import math
 
-#ссск
+#ссскномер
 #import Image
 
 import parser
