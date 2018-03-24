@@ -3,10 +3,7 @@
 import telebot
 import math
 
-
 from PIL import Image
-from flask import Flask, request
-import os
 
 import parser
 import config
@@ -16,7 +13,6 @@ import dworker
 token=config.token
 
 bot=telebot.TeleBot(token)
-server = Flask(__name__)
 
 def str(message): #Удаление команды из строки
     if message.text[0]=='/':
@@ -63,18 +59,5 @@ def handle_animate(message):
 	photo = open('movie.gif', 'rb')
 	bot.send_document(message.chat.id, photo)
 
-@server.route('/' + token, methods=['POST'])
-def getMessage():
-    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-    return "!", 200
-
-
-@server.route("/")
-def webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url='https://limmathbot.herokuapp.com/' + token)
-    return "!", 200
-
-
-if __name__ == "__main__":
-    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+if __name__ == '__main__':
+    bot.polling(none_stop=True)
