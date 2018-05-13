@@ -42,7 +42,7 @@ def handle_echo(message):
 def handle_solve(message):
     message.text=str(message)
     if(len(message.text)!=0):
-        bot.send_message(message.chat.id, parser.eval_(text))
+        bot.send_message(message.chat.id, parser.eval_(message.text))
 
 @bot.message_handler(commands=['plot'])
 def handle_plot(message):
