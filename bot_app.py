@@ -18,9 +18,9 @@ bot=telebot.TeleBot(token)
 
 def str(message): #Удаление команды из строки
     if message.text[0]=='/':
-        if message.text.size==0:
+        if message.text.length==0:
             bot.send_message(message.chat.id, "Введите аргументы команды!")
-            return
+            return ''
         #temp='\\'+command+' '
         #message.text=message.text.replace(temp,'')
         message.text=message.text.split(" ")
@@ -35,12 +35,14 @@ def str(message): #Удаление команды из строки
 @bot.message_handler(commands=['echo'])
 def handle_echo(message):
     message.text=str(message)
-    bot.send_message(message.chat.id, message.text)
+    if(message.text.length!=null):
+        bot.send_message(message.chat.id, message.text)
 
 @bot.message_handler(commands=['solve'])
 def handle_solve(message):
     message.text=str(message)
-    bot.send_message(message.chat.id, "Хуй тебе, а не решение")
+    if(message.text.length!=null):
+        bot.send_message(message.chat.id, parser.eval_(text))
 
 @bot.message_handler(commands=['plot'])
 def handle_plot(message):
