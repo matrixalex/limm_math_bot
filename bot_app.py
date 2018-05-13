@@ -41,6 +41,7 @@ def handle_solve(message):
 @bot.message_handler(commands=['plot'])
 def handle_plot(message):
 	func=message.text=str(message)
+	but1 =  telebot.types.InlineKeyboardButton(text="Android",callback_data="IOS") 
 	bot.send_message(message.chat.id,"Введите левую границу интервала: ")
 	photo = graphics.simple_graph(message.text)
 	bot.send_photo(message.chat.id, photo)
@@ -55,6 +56,9 @@ def handle_photo(message):
 @bot.message_handler(commands=['animate'])
 def handle_animate(message):
 	message.text=str(message)
+	if "z" in message.text:
+		bot.send_message(message.chat_id, "Поверхность должна быть задана в явном виде!")
+		return
 	graphics.movie_graph(message.text)
 	photo = open('movie.gif', 'rb')
 	bot.send_document(message.chat.id, photo)
