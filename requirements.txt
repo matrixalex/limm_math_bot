@@ -5,3 +5,4 @@ matplotlib==2.1.2
 numpy==1.14.0
 pyTelegramBotAPI==2.2.3
 telebot==0.0.3
+sympy
