@@ -11,6 +11,7 @@ import config
 import graphics
 import dworker
 
+
 token=config.token
 bot=telebot.TeleBot(token)
 
@@ -56,8 +57,8 @@ def handle_photo(message):
 @bot.message_handler(commands=['animate'])
 def handle_animate(message):
 	message.text=str(message)
-	if "z" in message.text:
-		bot.send_message(message.chat_id, "Поверхность должна быть задана в явном виде!")
+	if 'z' in message.text:
+		bot.send_message(message.chat.id, "Поверхность должна быть задана в явном виде!")
 		return
 	graphics.movie_graph(message.text)
 	photo = open('movie.gif', 'rb')
