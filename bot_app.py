@@ -45,7 +45,7 @@ def handle_apart(message):
     message.text=str(message)
     if(len(message.text)!=0):
         def func(x):
-            return eval(string)
+            return eval(message.text)
         bot.send_message(message.chat.id, apart(func,x))
 
 @bot.message_handler(commands=['solve'])
