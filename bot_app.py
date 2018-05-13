@@ -40,7 +40,7 @@ def handle_echo(message):
     if(len(message.text)!=0):
         bot.send_message(message.chat.id, message.text)
 
-@bot.message_handler(commands=['apart'])
+#@bot.message_handler(commands=['apart'])
 def handle_apart(message):
     message.text=str(message)
     if(len(message.text)!=0):
