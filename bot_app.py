@@ -16,6 +16,11 @@ import dworker
 
 token=config.token
 bot=telebot.TeleBot(token)
+updates = bot.getUpdates()
+if updates:
+    last_update_id = updates[-1]['update_id']
+    bot.getUpdates(offset=last_update_id+1)
+bot.notifyOnMessage()
 
 
 def str(message): #Удаление команды из строки
