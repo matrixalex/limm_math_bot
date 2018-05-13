@@ -18,6 +18,9 @@ bot=telebot.TeleBot(token)
 
 def str(message): #Удаление команды из строки
     if message.text[0]=='/':
+        if message.text.size==0:
+            bot.send_message(message.chat.id, "Введите аргументы команды!")
+            return
         #temp='\\'+command+' '
         #message.text=message.text.replace(temp,'')
         message.text=message.text.split(" ")
