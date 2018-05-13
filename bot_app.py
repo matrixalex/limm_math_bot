@@ -62,7 +62,7 @@ def handle_photo(message):
 @bot.message_handler(commands=['animate'])
 def handle_animate(message):
 	message.text=str(message)
-	if(len(message.text)!=null):
+	if(len(message.text)!=0)
 		if 'z' in message.text:
 			bot.send_message(message.chat.id, "Поверхность должна быть задана в явном виде!")
 			return
