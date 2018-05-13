@@ -16,7 +16,6 @@ import dworker
 
 token=config.token
 bot=telebot.TeleBot(token)
-bot.process_new_messages();
 
 
 def str(message): #Удаление команды из строки
