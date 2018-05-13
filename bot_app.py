@@ -2,6 +2,8 @@
 
 import telebot
 import math
+from sympy import apart
+from sympy.abc import x, y, z
 
 #ссскномер
 #import Image
@@ -37,6 +39,12 @@ def handle_echo(message):
     message.text=str(message)
     if(message.text.length!=null):
         bot.send_message(message.chat.id, message.text)
+
+@bot.message_handler(commands=['apart'])
+def handle_apart(message):
+    message.text=str(message)
+    if(message.text.length!=null):
+        bot.send_message(message.chat.id, apart(message.text))
 
 @bot.message_handler(commands=['solve'])
 def handle_solve(message):
