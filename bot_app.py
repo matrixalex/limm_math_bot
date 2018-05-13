@@ -18,7 +18,7 @@ bot=telebot.TeleBot(token)
 
 def str(message): #Удаление команды из строки
     if message.text[0]=='/':
-        if message.text.length==0:
+        if len(message.text)==0:
             bot.send_message(message.chat.id, "Введите аргументы команды!")
             return ''
         #temp='\\'+command+' '
@@ -41,7 +41,7 @@ def handle_echo(message):
 @bot.message_handler(commands=['solve'])
 def handle_solve(message):
     message.text=str(message)
-    if(message.text.length!=null):
+    if(len(message.text)!=null):
         bot.send_message(message.chat.id, parser.eval_(text))
 
 @bot.message_handler(commands=['plot'])
@@ -62,12 +62,13 @@ def handle_photo(message):
 @bot.message_handler(commands=['animate'])
 def handle_animate(message):
 	message.text=str(message)
-	if 'z' in message.text:
-		bot.send_message(message.chat.id, "Поверхность должна быть задана в явном виде!")
-		return
-	graphics.movie_graph(message.text)
-	photo = open('movie.gif', 'rb')
-	bot.send_document(message.chat.id, photo)
+	if(len(message.text)!=null):
+		if 'z' in message.text:
+			bot.send_message(message.chat.id, "Поверхность должна быть задана в явном виде!")
+			return
+		graphics.movie_graph(message.text)
+		photo = open('movie.gif', 'rb')
+		bot.send_document(message.chat.id, photo)
 
 if __name__ == '__main__':
     bot.polling(none_stop=True)
