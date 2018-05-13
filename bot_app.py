@@ -36,7 +36,7 @@ def handle_echo(message):
 @bot.message_handler(commands=['solve'])
 def handle_solve(message):
     message.text=str(message)
-    bot.send_message(message.chat.id, parser.eval_(message.text))
+    bot.send_message(message.chat.id, "Хуй тебе, а не решение")
 
 @bot.message_handler(commands=['plot'])
 def handle_plot(message):
