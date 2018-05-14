@@ -2,7 +2,7 @@
 
 import telebot
 import math
-from sympy import sympy
+from sympy import simplify
 from sympy import apart
 from sympy.abc import x, y, z
 
