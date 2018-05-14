@@ -9,7 +9,7 @@ from sympy.abc import x, y, z
 #ссскномер
 #import Image
 
-import parser
+import parser		  
 import config
 import graphics
 import dworker
