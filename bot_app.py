@@ -91,7 +91,7 @@ def handle_apart(message):
 		message.text=str(message)
 		if(len(message.text)!=0):
 			s=simplify(message.text)
-			lat=sympy.latex(s)
+			lat=sympy.latex.LatexPrinter(s)
 			plt.text(0, 0.3, r"$%s$" % lat, fontsize = 30)
 			plt.axis('off')
 			plt.savefig('plot.png')
