@@ -3,7 +3,9 @@
 import telebot
 import math
 import sympy as sympy
-import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.use('Agg')
+from matplotlib import pyplot as plt
 from sympy import simplify
 from sympy import apart
 from sympy import diff
