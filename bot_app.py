@@ -78,7 +78,8 @@ def handle_apart(message):
 			plt.savefig('plot.png')
 			bot.send_message(message.chat.id, apart(message.text))
 			photo = open('plot.png', 'rb')
-			bot.send_photo(message.chat.id,photo) 
+			bot.send_photo(message.chat.id,photo)
+			plt.close()
 	except BaseException:
 		bot.send_message(message.chat.id, 'Ошибка при вводе дроби!')
 
