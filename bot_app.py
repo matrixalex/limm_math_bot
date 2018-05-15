@@ -59,7 +59,7 @@ def handle_fact(message):
 	try:
 		message.text=str(message)
 		if(len(message.text)!=0):
-			bot.send_message(message.chat.id, numpy.math.factorial(s))
+			bot.send_message(message.chat.id, numpy.math.factorial(int(s)))
 	except BaseException:
 		bot.send_message(message.chat.id, 'Ошибка')
 
