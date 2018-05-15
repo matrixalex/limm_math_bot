@@ -90,7 +90,7 @@ def handle_apart(message):
 	try:
 		message.text=str(message)
 		if(len(message.text)!=0):
-			init_printing()
+			sympy.init_printing()
 			s=simplify(message.text)
 			lat=sympy.latex(s)
 			plt.text(0, 0.6, r"$%s$" % s, fontsize = 50)
