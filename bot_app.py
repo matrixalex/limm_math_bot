@@ -70,9 +70,17 @@ def handle_simplify(message):
 		message.text=str(message)
 		if(len(message.text)!=0):
 			s=simplify(message.text)
+			lat=sympy.latex(s)
+			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
+			plt.axis('off')
+			plt.savefig('plot.png')
 			bot.send_message(message.chat.id, simplify(message.text))
+			photo = open('plot.png', 'rb')
+			bot.send_photo(message.chat.id,photo)
+			plt.close()
 	except BaseException:
 		bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
+
 
 @bot.message_handler(commands=['apart'])
 def handle_apart(message):
@@ -83,8 +91,6 @@ def handle_apart(message):
 			lat=sympy.latex(s)
 			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
 			plt.axis('off')
-			#p = sympy.plotting.plot(s)
-			#plt.saveimage('plot.png', format='png')
 			plt.savefig('plot.png')
 			bot.send_message(message.chat.id, apart(message.text))
 			photo = open('plot.png', 'rb')
