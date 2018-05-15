@@ -91,7 +91,7 @@ def handle_apart(message):
 		message.text=str(message)
 		if(len(message.text)!=0):
 			s=simplify(message.text)
-			lat=sympy.printing.pretty_print(s)
+			lat=sympy.latex(sympy.parse_expr(s))
 			plt.axis('off')
 			plt.savefig('plot.png')
 			bot.send_message(message.chat.id, apart(message.text))
