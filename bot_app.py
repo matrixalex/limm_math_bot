@@ -2,7 +2,7 @@
 
 import telebot
 import math
-from sympy import Plot
+import sympy as sympy
 from sympy import simplify
 from sympy import apart
 from sympy import diff
@@ -67,7 +67,7 @@ def handle_apart(message):
 		message.text=str(message)
 		if(len(message.text)!=0):
 			s=simplify(message.text)
-			p = Plot(s)
+			p = sympy.Plot(s)
 			p.saveimage('plot.png', format='png')
 			bot.send_message(message.chat.id, apart(message.text))
 			photo = open('plot.png', 'rb')
