@@ -2,7 +2,7 @@
 
 import telebot
 import math
-//import sympy
+#import sympy
 from sympy import simplify
 from sympy import apart
 from sympy import diff
