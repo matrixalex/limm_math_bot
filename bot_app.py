@@ -2,6 +2,7 @@
 
 import telebot
 import math
+import numpy
 import sympy as sympy
 import matplotlib as mpl
 mpl.use('Agg')
@@ -52,6 +53,15 @@ def handle_diff(message):
     if(len(message.text)!=0):
         s=simplify(message.text)
         bot.send_message(message.chat.id, diff(message.text))
+
+@bot.message_handler(commands=['fact'])
+def handle_fact(message):
+	try:
+		message.text=str(message)
+		if(len(message.text)!=0):
+			bot.send_message(message.chat.id, numpy.math.factorial(s))
+	except BaseException:
+		bot.send_message(message.chat.id, 'Ошибка')
 
 
 @bot.message_handler(commands=['simplify'])
