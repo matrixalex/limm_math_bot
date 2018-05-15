@@ -10,6 +10,8 @@ from matplotlib import pyplot as plt
 from sympy import simplify
 from sympy import apart
 from sympy import diff
+from sympy import init_session
+
 from sympy.parsing.sympy_parser import parse_expr
 
 #ссскномер
@@ -69,9 +71,10 @@ def handle_simplify(message):
 	try:
 		message.text=str(message)
 		if(len(message.text)!=0):
+			init_printing()
 			s=simplify(message.text)
 			lat=sympy.latex(s)
-			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
+			plt.text(0, 0.6, r"$%s$" % s, fontsize = 50)
 			plt.axis('off')
 			plt.savefig('plot.png')
 			bot.send_message(message.chat.id, simplify(message.text))
