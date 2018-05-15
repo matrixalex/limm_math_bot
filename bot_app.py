@@ -5,7 +5,7 @@ import math
 import sympy
 from sympy import simplify
 from sympy import apart
-from sympy.abc import x, y, z, _clash1
+from sympy.parsing.sympy_parser import parse_expr
 
 #ссскномер
 #import Image
@@ -46,7 +46,7 @@ def handle_echo(message):
 def handle_simplify(message):
     message.text=str(message)
     if(len(message.text)!=0):
-        bot.send_message(message.chat.id, simplify(message.text, locals=_clash1))
+        bot.send_message(message.chat.id, simplify(message.text))
 
 #@bot.message_handler(commands=['apart'])
 def handle_apart(message):
