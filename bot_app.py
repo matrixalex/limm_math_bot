@@ -72,6 +72,7 @@ def handle_apart(message):
 			s=simplify(message.text)
 			lat=sympy.latex(s)
 			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
+			plt.axis('off')
 			#p = sympy.plotting.plot(s)
 			#plt.saveimage('plot.png', format='png')
 			plt.savefig('plot.png')
