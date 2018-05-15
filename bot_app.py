@@ -53,10 +53,13 @@ def handle_diff(message):
 
 @bot.message_handler(commands=['simplify'])
 def handle_simplify(message):
-    message.text=str(message)
-    if(len(message.text)!=0):
-        s=simplify(message.text)
-        bot.send_message(message.chat.id, simplify(message.text))
+	try:
+		message.text=str(message)
+		if(len(message.text)!=0):
+			s=simplify(message.text)
+			bot.send_message(message.chat.id, simplify(message.text))
+	except BaseException:
+		bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
 
 #@bot.message_handler(commands=['apart'])
 def handle_apart(message):
