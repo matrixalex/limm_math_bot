@@ -45,8 +45,8 @@ def handle_echo(message):
 @bot.message_handler(commands=['simplify'])
 def handle_simplify(message):
     message.text=str(message)
-    if(len(message.text)!=0):
-        bot.send_message(message.chat.id, simplify(message.text))
+    #if(len(message.text)!=0):
+    #    bot.send_message(message.chat.id, simplify(message.text))
 
 #@bot.message_handler(commands=['apart'])
 def handle_apart(message):
@@ -59,8 +59,8 @@ def handle_apart(message):
 @bot.message_handler(commands=['solve'])
 def handle_solve(message):
     message.text=str(message)
-    #if(len(message.text)!=0):
-    #    bot.send_message(message.chat.id, parser.eval_(message.text))
+    if(len(message.text)!=0):
+        bot.send_message(message.chat.id, parser.eval_(message.text))
 
 @bot.message_handler(commands=['plot'])
 def handle_plot(message):
