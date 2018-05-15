@@ -4,8 +4,7 @@ import telebot
 import math
 from sympy import simplify
 from sympy import apart
-from sympy.abc import x, y, z
-from sympy import _clash1
+from sympy.abc import x, y, z, _clash1
 
 #ссскномер
 #import Image
