@@ -2,7 +2,7 @@
 
 import telebot
 import math
-#import sympy
+from sympy import Plot
 from sympy import simplify
 from sympy import apart
 from sympy import diff
@@ -67,27 +67,26 @@ def handle_apart(message):
 		message.text=str(message)
 		if(len(message.text)!=0):
 			s=simplify(message.text)
+			p = Plot(s)
+			p.saveimage('plot.png', format='png')
 			bot.send_message(message.chat.id, apart(message.text))
+			photo = open('plot.png', 'rb')
+			bot.send_photo(message.chat.id,photo) 
 	except BaseException:
-		bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
-
-#@bot.message_handler(commands=['apart'])
-def handle_apart(message):
-    message.text=str(message)
-    if(len(message.text)!=0):
-        def func(x):
-            return eval(message.text)
-        bot.send_message(message.chat.id, apart(func,x))
+		bot.send_message(message.chat.id, 'Ошибка при вводе дроби!')
 
 @bot.message_handler(commands=['solve'])
 def handle_solve(message):
-    message.text=str(message)
-    if(len(message.text)!=0):
-        bot.send_message(message.chat.id, parser.eval_(message.text))
+	try:
+		message.text=str(message)
+		if(len(message.text)!=0):
+			bot.send_message(message.chat.id, parser.eval_(message.text))
+	except BaseException:
+		bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
 
 @bot.message_handler(commands=['plot'])
 def handle_plot(message):
-	
+
 	func=message.text=str(message)
 	but1 =  telebot.types.InlineKeyboardButton(text="Android",callback_data="IOS") 
 	bot.send_message(message.chat.id,"Введите левую границу интервала: ")
@@ -98,7 +97,7 @@ def handle_plot(message):
 
 @bot.message_handler(commands=['photo'])
 def handle_photo(message):
-    photo = open('smither/image1.jpg', 'rb')
+    photo = open('image1.jpg', 'rb')
     bot.send_photo(message.chat.id, photo)
 
 @bot.message_handler(commands=['animate'])
