@@ -67,7 +67,7 @@ def handle_apart(message):
 		message.text=str(message)
 		if(len(message.text)!=0):
 			s=simplify(message.text)
-			p = sympy.Plot(s)
+			p = sympy.plotting.plot(s)
 			p.saveimage('plot.png', format='png')
 			bot.send_message(message.chat.id, apart(message.text))
 			photo = open('plot.png', 'rb')
