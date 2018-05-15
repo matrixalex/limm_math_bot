@@ -2,9 +2,10 @@
 
 import telebot
 import math
-import sympy
+//import sympy
 from sympy import simplify
 from sympy import apart
+from sympy import diff
 from sympy.parsing.sympy_parser import parse_expr
 
 #ссскномер
@@ -42,10 +43,19 @@ def handle_echo(message):
     if(len(message.text)!=0):
         bot.send_message(message.chat.id, message.text)
 
+@bot.message_handler(commands=['diff'])
+def handle_diff(message):
+    message.text=str(message)
+    if(len(message.text)!=0):
+        s=simplify(message.text)
+        bot.send_message(message.chat.id, diff(message.text))
+
+
 @bot.message_handler(commands=['simplify'])
 def handle_simplify(message):
     message.text=str(message)
     if(len(message.text)!=0):
+        s=simplify(message.text)
         bot.send_message(message.chat.id, simplify(message.text))
 
 #@bot.message_handler(commands=['apart'])
