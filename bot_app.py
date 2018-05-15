@@ -61,6 +61,16 @@ def handle_simplify(message):
 	except BaseException:
 		bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
 
+@bot.message_handler(commands=['apart'])
+def handle_apart(message):
+	try:
+		message.text=str(message)
+		if(len(message.text)!=0):
+			s=simplify(message.text)
+			bot.send_message(message.chat.id, apart(message.text))
+	except BaseException:
+		bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
+
 #@bot.message_handler(commands=['apart'])
 def handle_apart(message):
     message.text=str(message)
