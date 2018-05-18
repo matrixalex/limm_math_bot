@@ -146,7 +146,7 @@ def handle_animate(message):
 @bot.message_handler(func=lambda message: message.text!='')
 def handle_wolfram(message):
 	try:
-		message.text=str(message)
+	#	message.text=str(message)
 		if(len(message.text)!=0):
 			res = client.query(message.text)
 			s = next(res.results).text
