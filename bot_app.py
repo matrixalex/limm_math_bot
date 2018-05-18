@@ -83,9 +83,8 @@ def handle_simplify(message):
 			plt.text(0, 0.6, r"$%s$" % s, fontsize = 50)
 			plt.axis('off')
 			plt.savefig('plot.png')
-			bot.send_message(message.chat.id, simplify(message.text))
 			photo = open('plot.png', 'rb')
-			bot.send_photo(message.chat.id,photo)
+			bot.send_photo(message.chat.id,photo, s)
 			plt.close()
 	except BaseException:
 		bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
@@ -144,13 +143,20 @@ def handle_animate(message):
 		photo = open('movie.gif', 'rb')
 		bot.send_document(message.chat.id, photo)
 
-@bot.message_handler(commands=['wolfram'])
-def handle_apart(message):
+@bot.message_handler(commands=[''])
+def handle_wolfram(message):
 	try:
 		message.text=str(message)
 		if(len(message.text)!=0):
 			res = client.query(message.text)
-			bot.send_message(message.chat.id,next(res.results).text)
+			s = next(res.results).text
+			lat=sympy.printing.latex(s)
+			plt.text(0, 0.3, r"$%s$" % lat, fontsize = 30)
+			plt.axis('off')
+			plt.savefig('plot.png')
+			bot.send_message(message.chat.id,s)
+			photo = open('plot.png', 'rb')
+			bot.send_photo(message.chat.id,photo, s)
 
 	except BaseException:
 		bot.send_message(message.chat.id, 'Неверный запрос к базе знаний Wolfram Alpha')
