@@ -143,7 +143,7 @@ def handle_animate(message):
 		photo = open('movie.gif', 'rb')
 		bot.send_document(message.chat.id, photo)
 
-@bot.message_handler(commands=[''])
+#@bot.message_handler()
 def handle_wolfram(message):
 	try:
 		message.text=str(message)
