@@ -11,6 +11,9 @@ from sympy import simplify
 from sympy import apart
 from sympy import diff
 from sympy import init_session
+import wolframalpha
+import ssl
+client = wolframalpha.Client(app_id)
 
 from sympy.parsing.sympy_parser import parse_expr
 
@@ -91,7 +94,7 @@ def handle_apart(message):
 		message.text=str(message)
 		if(len(message.text)!=0):
 			s=simplify(message.text)
-			lat=sympy.printing.latex.latex(s)
+			lat=sympy.printing.latex(s)
 			plt.text(0, 0.3, r"$%s$" % lat, fontsize = 30)
 			plt.axis('off')
 			plt.savefig('plot.png')
@@ -137,6 +140,17 @@ def handle_animate(message):
 		graphics.movie_graph(message.text)
 		photo = open('movie.gif', 'rb')
 		bot.send_document(message.chat.id, photo)
+
+@bot.message_handler(commands=['wolfram'])
+def handle_apart(message):
+	try:
+		message.text=str(message)
+		if(len(message.text)!=0):
+			res = client.query(message.text)
+			bot.send_message(message.chat.id,next(res.results).text)
+
+	except BaseException:
+		bot.send_message(message.chat.id, 'Ошибка при вводе дроби!')
 
 if __name__ == '__main__':
     bot.polling(none_stop=True)

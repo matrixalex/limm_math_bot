@@ -7,6 +7,7 @@ from mpl_toolkits.mplot3d import axes3d
 import os, sys
 import imageio
 
+
 # лучше через regex
 replacements = {
     'sin' : 'np.sin',
