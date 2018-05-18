@@ -13,7 +13,7 @@ from sympy import diff
 from sympy import init_session
 import wolframalpha
 import ssl
-client = wolframalpha.Client(app_id)
+
 
 from sympy.parsing.sympy_parser import parse_expr
 
@@ -28,6 +28,9 @@ import dworker
 
 token=config.token
 bot=telebot.TeleBot(token)
+
+wolfram_app_id = config.wolfram_app_id
+client = wolframalpha.Client(wolfram_app_id)
 
 
 def str(message): #Удаление команды из строки
@@ -150,7 +153,7 @@ def handle_apart(message):
 			bot.send_message(message.chat.id,next(res.results).text)
 
 	except BaseException:
-		bot.send_message(message.chat.id, 'Ошибка при вводе дроби!')
+		bot.send_message(message.chat.id, 'Неверный запрос к базе знаний Wolfram Alpha')
 
 if __name__ == '__main__':
     bot.polling(none_stop=True)

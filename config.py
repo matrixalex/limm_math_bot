@@ -4,6 +4,7 @@ from enum import Enum
 from os import environ
 
 token = environ.get('heroku_token')
+wolfram_app_id = environ.get('client_id')
 
 db_file = "database.vdb"
 
