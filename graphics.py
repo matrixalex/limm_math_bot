@@ -50,13 +50,12 @@ def d3a2string2func(string):
     for old, new in replacements.items():
         string = string.replace(old, new)
 
-    def heaviside(x, y):
-        def func(x,y):
-            return eval(string)
-        func[np.diff(func) >= 5] = np.nan
-        return func
+    def func(x,y):
+        return eval(string)
 
-    return heaviside
+    func[np.diff(func) >= 5] = np.nan
+
+    return func
 
 
 def simple_graph (message): #Отправка графика
