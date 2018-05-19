@@ -53,7 +53,7 @@ def d3a2string2func(string):
     def func(x,y):
         return eval(string)
 
-    func[np.diff(func) >= 5] = np.nan
+   # func[np.diff(func) >= 5] = np.nan
 
     return func
 
@@ -130,8 +130,10 @@ def movie_graph(message):
 	#y = np.arange(-4, 9,1)
 	X, Y = np.meshgrid(x, y)
 	fun = d3a2string2func (message)
+	pos = np.where(np.abs(np.diff(fun)) >= 0.5)[0]
 	zs = np.array([fun(x,y) for x,y in zip(np.ravel(X), np.ravel(Y))])
 	Z = zs.reshape(X.shape)
+	Z [pos] = np.nan
 	v=fun(3,5)
 	s = ax.plot_surface(X, Y, Z, cmap=cm.jet)
 	plt.axis('off') # remove axes for visual appeal
