@@ -134,7 +134,7 @@ def handle_photo(message):
 
 @bot.message_handler(commands=['animate'])
 def handle_animate(message):
-	if(0!=0):
+	if(0==0):
 		message.text=str(message)
 		if(len(message.text)!=0):
 			if 'z' in message.text:
