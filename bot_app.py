@@ -11,7 +11,7 @@ from sympy import simplify
 from sympy import apart
 from sympy import diff
 from sympy import init_session
-#import wolframalpha
+import wolframalpha
 import ssl
 
 
