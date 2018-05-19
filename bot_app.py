@@ -134,14 +134,17 @@ def handle_photo(message):
 
 @bot.message_handler(commands=['animate'])
 def handle_animate(message):
-	message.text=str(message)
-	if(len(message.text)!=0):
-		if 'z' in message.text:
-			bot.send_message(message.chat.id, "Поверхность должна быть задана в явном виде!")
-			return
-		graphics.movie_graph(message.text)
-		photo = open('movie.gif', 'rb')
-		bot.send_document(message.chat.id, photo)
+	try:
+		message.text=str(message)
+		if(len(message.text)!=0):
+			if 'z' in message.text:
+				bot.send_message(message.chat.id, "Поверхность должна быть задана в явном виде!")
+				return
+			graphics.movie_graph(message.text)
+			photo = open('movie.gif', 'rb')
+			bot.send_document(message.chat.id, photo)
+	except BaseException:
+		bot.send_message(message.chat.id, 'Ошибка при вводе поверхности')
 
 @bot.message_handler(func=lambda message: message.text!='')
 def handle_wolfram(message):
