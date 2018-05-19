@@ -134,8 +134,8 @@ def movie_graph(message):
 	zs = np.array([fun(x,y) for x,y in zip(np.ravel(X), np.ravel(Y))])
 	Z = zs.reshape(X.shape)
 	#Z [pos] = np.nan
-	utol = 20
-	ltol = -20
+	utol = 100
+	ltol = -100
 	Z[Z>utol] = np.inf
 	Z[Z<ltol] = -np.inf
 	v=fun(3,5)
