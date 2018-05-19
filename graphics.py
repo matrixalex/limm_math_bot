@@ -136,11 +136,11 @@ def movie_graph(message):
 	#Z [pos] = np.nan
 	utol = 100
 	ltol = -100
-	Z[Z>utol] = np.nan
-	Z[Z<ltol] = -np.nan
+	#Z[Z>utol] = np.nan
+	#Z[Z<ltol] = -np.nan
 	v=fun(3,5)
 	s = ax.plot_surface(X, Y, Z, cmap=cm.jet)
-	plt.axis('off') # remove axes for visual appeal
-	angles = np.linspace(0,360,21)[:-1] # Take 20 angles between 0 and 360
+	plt.axis('off') 
+	angles = np.linspace(0,360,21)[:-1] 
 
 	rotanimate(ax, angles,'movie.gif', delay=20) 
