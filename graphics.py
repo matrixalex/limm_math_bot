@@ -53,7 +53,7 @@ def d3a2string2func(string):
     def heaviside(x, y):
         def func(x,y):
             return eval(string)
-        func[np.diff(func) >= 50] = np.nan
+        func[np.diff(func) >= 5] = np.nan
         return func
 
     return heaviside
