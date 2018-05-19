@@ -136,8 +136,8 @@ def movie_graph(message):
 	#Z [pos] = np.nan
 	utol = 100
 	ltol = -100
-	Z[Z>utol] = np.inf
-	Z[Z<ltol] = -np.inf
+	Z[Z>utol] = np.nan
+	Z[Z<ltol] = -np.nan
 	v=fun(3,5)
 	s = ax.plot_surface(X, Y, Z, cmap=cm.jet)
 	plt.axis('off') # remove axes for visual appeal
