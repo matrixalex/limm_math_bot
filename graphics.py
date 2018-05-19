@@ -56,7 +56,7 @@ def d3a2string2func(string):
         func[np.diff(func) >= 50] = np.nan
         return func
 
-    return func
+    return heaviside
 
 
 def simple_graph (message): #Отправка графика
