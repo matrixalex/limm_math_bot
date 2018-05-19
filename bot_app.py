@@ -11,7 +11,7 @@ from sympy import simplify
 from sympy import apart
 from sympy import diff
 from sympy import init_session
-import wolframalpha
+#import wolframalpha
 import ssl
 
 
@@ -148,7 +148,7 @@ def handle_animate(message):
 
 @bot.message_handler(func=lambda message: message.text!='')
 def handle_wolfram(message):
-	try:
+	try:							  
 	#	message.text=str(message)
 		if(len(message.text)!=0):
 			res = client.query(message.text)
