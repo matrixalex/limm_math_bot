@@ -124,7 +124,7 @@ def movie_graph(message):
 	ax = fig.add_subplot(111, projection='3d')
 	#X, Y, Z = axes3d.get_test_data(0.05)
 	
-	x = y = np.arange(-6.0, 6.0, 0.1)
+	x = y = np.arange(-10.0, 10.0, 0.1)
 
 	#x = np.arange(-4, 9, 1)
 	#y = np.arange(-4, 9,1)
@@ -134,6 +134,9 @@ def movie_graph(message):
 	zs = np.array([fun(x,y) for x,y in zip(np.ravel(X), np.ravel(Y))])
 	Z = zs.reshape(X.shape)
 	#Z [pos] = np.nan
+	for k in Z:
+		if abc(k)>1000:
+			k = np.nan
 	utol = 100
 	ltol = -100
 	#Z[Z>utol] = np.nan
