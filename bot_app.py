@@ -150,6 +150,7 @@ def handle_wolfram(message):
 		if(len(message.text)!=0):
 			res = client.query(message.text)
 			s = next(res.results).text
+			bot.send_message(message.chat.id, s)
 			#lat=sympy.printing.latex(s)
 			#plt.text(0, 0.3, r"$%s$" % lat, fontsize = 30)
 			#plt.axis('off')
