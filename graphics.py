@@ -130,7 +130,7 @@ def movie_graph(message):
 	zs = np.array([fun(x,y) for x,y in zip(np.ravel(X), np.ravel(Y))])
 	Z = zs.reshape(X.shape)
 	v=fun(3,5)
-	s = ax.plot_surface(X, Y, Z, cmap=cm.jet)
+	s = ax.plot_trisurf(X, Y, Z, cmap=cm.jet)
 	plt.axis('off') # remove axes for visual appeal
 	angles = np.linspace(0,360,21)[:-1] # Take 20 angles between 0 and 360
 
