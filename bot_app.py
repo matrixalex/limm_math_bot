@@ -150,13 +150,12 @@ def handle_wolfram(message):
 		if(len(message.text)!=0):
 			res = client.query(message.text)
 			s = next(res.results).text
-			lat=sympy.printing.latex(s)
-			plt.text(0, 0.3, r"$%s$" % lat, fontsize = 30)
-			plt.axis('off')
-			plt.savefig('plot.png')
-			bot.send_message(message.chat.id,s)
-			photo = open('plot.png', 'rb')
-			bot.send_photo(message.chat.id,photo, s)
+			#lat=sympy.printing.latex(s)
+			#plt.text(0, 0.3, r"$%s$" % lat, fontsize = 30)
+			#plt.axis('off')
+			#plt.savefig('plot.png')
+			#photo = open('plot.png', 'rb')
+			#bot.send_photo(message.chat.id,photo, s)
 
 	except BaseException:
 		bot.send_message(message.chat.id, 'Неверный запрос к базе знаний Wolfram Alpha')
