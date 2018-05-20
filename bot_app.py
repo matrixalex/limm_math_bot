@@ -62,7 +62,7 @@ def handle_lim(message):
 	try:
 		message.text=rstr(message)
 		if(len(message.text)!=0):
-			s=limit(message.text.split(' ')[0], message.text.split(' ')[1])
+			s=limit(message.text.split(' ')[0], message.text.split(' ')[1], message.text.split(' ')[2])
 			lat=sympy.latex(s)
 			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
 			plt.axis('off')
@@ -71,7 +71,7 @@ def handle_lim(message):
 			bot.send_photo(message.chat.id,photo, s)
 			plt.close()
 	except BaseException:
-		bot.send_message(message.chat.id, 'Ошибка при вводе функции!')
+		bot.send_message(message.chat.id, 'Ошибка при вводе предела!')
 
 @bot.message_handler(commands=['diff'])
 def handle_diff(message):
