@@ -78,7 +78,7 @@ def handle_diff(message):
 	try:
 		message.text=rstr(message)
 		if(len(message.text)!=0):
-			if (len(message.text.split(', '))==0):
+			if (message.text.find(', ')==-1):
 				k = 1
 				sk = 'x'
 			else: 
