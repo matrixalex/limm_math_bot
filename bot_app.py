@@ -57,6 +57,22 @@ def handle_echo(message):
     if(len(message.text)!=0):
         bot.send_message(message.chat.id, message.text)
 
+@bot.message_handler(commands=['lim'])
+def handle_lim(message):
+	try:
+		message.text=rstr(message)
+		if(len(message.text)!=0):
+			s=limit(message.text.split(' ')[0], message.text.split(' ')[1])
+			lat=sympy.latex(s)
+			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
+			plt.axis('off')
+			plt.savefig('plot.png')
+			photo = open('plot.png', 'rb')
+			bot.send_photo(message.chat.id,photo, s)
+			plt.close()
+	except BaseException:
+		bot.send_message(message.chat.id, 'Ошибка при вводе функции!')
+
 @bot.message_handler(commands=['diff'])
 def handle_diff(message):
 	try:
@@ -64,7 +80,7 @@ def handle_diff(message):
 		if(len(message.text)!=0):
 			s=diff(message.text)
 			lat=sympy.latex(s)
-			plt.text(0, 0.6, r"$%s$" % s, fontsize = 50)
+			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
 			plt.axis('off')
 			plt.savefig('plot.png')
 			photo = open('plot.png', 'rb')
