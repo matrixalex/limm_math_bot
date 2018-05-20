@@ -120,6 +120,7 @@ def handle_solve(message):
 
 @bot.message_handler(commands=['sqrt'])
 def handle_sqrt(message):
+	try:
 		message.text=rstr(message)
 		if(len(message.text)!=0):
 			hui = message.text.split(" ")[0]
@@ -149,8 +150,8 @@ def handle_sqrt(message):
 				else: s= s + out
 				out=''
 			bot.send_message(message.chat.id, s)
-	#except BaseException:
-	#	bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
+	except BaseException:
+		bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
 
 @bot.message_handler(commands=['plot'])
 def handle_plot(message):
