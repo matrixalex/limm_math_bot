@@ -62,7 +62,7 @@ def handle_lim(message):
 	try:
 		message.text=rstr(message)
 		if(len(message.text)!=0):
-			s=limit(eval(message.text.split(', ')[0]), eval(message.text.split(', ')[1]), message.text.split(', ')[2])
+			s=sympy.limit(message.text.split(', ')[0], 'x', message.text.split(', ')[1])
 			lat=sympy.latex(s)
 			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
 			plt.axis('off')
