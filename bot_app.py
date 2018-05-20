@@ -59,10 +59,51 @@ def handle_echo(message):
 
 @bot.message_handler(commands=['diff'])
 def handle_diff(message):
-    message.text=rstr(message)
-    if(len(message.text)!=0):
-        s=simplify(message.text)
-        bot.send_message(message.chat.id, diff(message.text))
+	try:
+		message.text=rstr(message)
+		if(len(message.text)!=0):
+			s=diff(message.text)
+			lat=sympy.latex(s)
+			plt.text(0, 0.6, r"$%s$" % s, fontsize = 50)
+			plt.axis('off')
+			plt.savefig('plot.png')
+			photo = open('plot.png', 'rb')
+			bot.send_photo(message.chat.id,photo, s)
+			plt.close()
+	except BaseException:
+		bot.send_message(message.chat.id, 'Ошибка при вводе функции!')
+
+@bot.message_handler(commands=['together'])
+def handle_together(message):
+	try:
+		message.text=rstr(message)
+		if(len(message.text)!=0):
+			s=sympy.together(message.text)
+			lat=sympy.latex(s)
+			plt.text(0, 0.6, r"$%s$" % s, fontsize = 50)
+			plt.axis('off')
+			plt.savefig('plot.png')
+			photo = open('plot.png', 'rb')
+			bot.send_photo(message.chat.id,photo, s)
+			plt.close()
+	except BaseException:
+		bot.send_message(message.chat.id, 'Ошибка при вводе дробей!')
+
+@bot.message_handler(commands=['integrate'])
+def handle_integrate(message):
+	try:
+		message.text=rstr(message)
+		if(len(message.text)!=0):
+			s=sympy.integrate(message.text)
+			lat=sympy.latex(s)
+			plt.text(0, 0.6, r"$%s$" % s, fontsize = 50)
+			plt.axis('off')
+			plt.savefig('plot.png')
+			photo = open('plot.png', 'rb')
+			bot.send_photo(message.chat.id,photo, s)
+			plt.close()
+	except BaseException:
+		bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
 
 @bot.message_handler(commands=['fact'])
 def handle_fact(message):
@@ -79,7 +120,6 @@ def handle_simplify(message):
 	try:
 		message.text=rstr(message)
 		if(len(message.text)!=0):
-			init_printing()
 			s=simplify(message.text)
 			lat=sympy.latex(s)
 			plt.text(0, 0.6, r"$%s$" % s, fontsize = 50)
@@ -97,14 +137,13 @@ def handle_apart(message):
 	try:
 		message.text=rstr(message)
 		if(len(message.text)!=0):
-			s=simplify(message.text)
+			s=apart(message.text)
 			lat=sympy.printing.latex(s)
 			plt.text(0, 0.3, r"$%s$" % lat, fontsize = 30)
 			plt.axis('off')
 			plt.savefig('plot.png')
-			bot.send_message(message.chat.id, apart(message.text))
 			photo = open('plot.png', 'rb')
-			bot.send_photo(message.chat.id,photo)
+			bot.send_photo(message.chat.id,photo, s)
 			plt.close()
 	except BaseException:
 		bot.send_message(message.chat.id, 'Ошибка при вводе дроби!')
