@@ -147,6 +147,7 @@ def handle_sqrt(message):
 				if i != n-1:
 					s = s + out + ' , '
 				else: s= s + out
+				out=''
 			bot.send_message(message.chat.id, s)
 	#except BaseException:
 	#	bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
