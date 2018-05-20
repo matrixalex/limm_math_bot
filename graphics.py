@@ -8,11 +8,19 @@ import os, sys
 import imageio
 
 
-# лучше через regex
+
 replacements = {
     'sin' : 'np.sin',
     'cos' : 'np.cos',
-    'exp': 'np.exp',
+	'tan' : 'np.tan',
+	'arccos' : 'np.arccos',
+	'arcsin' : 'np.arcsin',
+	'sinh' : 'np.cosh',
+	'cosh' : 'np.cosh',
+	'tanh' : 'np.tanh',
+	'arccosh' : 'np.arccosh',
+	'arcsinh' : 'np.arcsinh',
+    'ln': 'np.exp',
     '^': '**',
 }
 
@@ -58,10 +66,7 @@ def d3a2string2func(string):
     return func
 
 
-def simple_graph (message): #Отправка графика
-	a=-10
-	b=10
-
+def simple_graph (message, a, b): #Отправка графика
 	func = string2func(message)
 	x = np.linspace(a,b, 250)
 	plt.plot(x, func(x))

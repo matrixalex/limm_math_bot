@@ -215,21 +215,27 @@ def handle_sqrt(message):
 	except BaseException:
 		bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
 
+funct = ''
+a=-10
+b=10
 @bot.message_handler(commands=['plot'])
 def handle_plot(message):
-	func=message.text=rstr(message)
-	but1 =  telebot.types.InlineKeyboardButton(text="Android",callback_data="IOS")
-	msg = bot.reply_to(message, "Введите левую границу интервала: ")
-#	bot.send_message(message.chat.id,"Введите левую границу интервала: ")
-	bot.register_next_step_handler(msg, next_step)
+	try:
+		funct=message.text=rstr(message)
+		but1 =  telebot.types.InlineKeyboardButton(text="Android",callback_data="IOS")
+		bot.send_message(message.chat.id, "Введите левую границу интервала: ")
+		bot.register_next_step_handler(message, get_a)
+	except BaseException:
+		bot.send_message(message.chat.id, 'Ошибка при вводе функции')
 
-def next_step(message):
+def get_a(message):
+	a = message.text
+	bot.send_message(message.chat.id,"Введите правую границу интервала: ")
+	bot.register_next_step_handler(message, get_b)
 
-	bot.send_message(message.chat.id,"Введите левую границу интервала: ")
-	m = bot.register_next_step_handler(msg, process_age_step)
-	bot.send_message(message.chat.id,"Введите левую границу интервала:") 
-	bot.send_photo(message.chat.id, photo)
-	photo = graphics.simple_graph(message.text)
+def get_b(message):
+	b = message.text
+	photo = graphics.simple_graph(funct, a, b)
 	bot.send_photo(message.chat.id, photo)
 
 @bot.message_handler(commands=['photo'])
