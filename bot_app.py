@@ -128,7 +128,7 @@ def handle_sqrt(message):
 			l = math.pow(c.real**2+c.imag**2,1/n)
 			alpha = math.atan(c.imag/c.real)
 			s = ''
-			for i in range (0,n-1):
+			for i in range (0,n):
 				p1 = l*math.cos((alpha+2*math.pi*i)/n)
 				p2 = l*math.sin((alpha+2*math.pi*i)/n)
 				p = complex(p1,p2)
