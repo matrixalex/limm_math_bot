@@ -132,9 +132,21 @@ def handle_sqrt(message):
 				p1 = l*math.cos((alpha+2*math.pi*i)/n)
 				p2 = l*math.sin((alpha+2*math.pi*i)/n)
 				p = complex(p1,p2)
+				k = p2/abs(p2)
+				out = ''
+				if (p1!=0):
+					out = out + p1
+				if (k==1): 
+					out = out + '+'
+				else:
+					out = out + '-'
+				if (p2!=0):
+					out = out + p2 + '*j'
+				if (len(out)==0): 
+					out = '0'
 				if i != n-1:
-					s = s + p+' , '
-				else: s= s + p
+					s = s + out + ' , '
+				else: s= s + out
 			bot.send_message(message.chat.id, s)
 	#except BaseException:
 	#	bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
