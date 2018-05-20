@@ -78,6 +78,7 @@ def handle_diff(message):
 	try:
 		message.text=rstr(message)
 		if(len(message.text)!=0):
+			plt.close()
 			if (message.text.find(', ')==-1):
 				k = 1
 				sk = 'x'
@@ -116,7 +117,7 @@ def handle_integrate(message):
 	try:
 		message.text=rstr(message)
 		if(len(message.text)!=0):
-			s=sympy.integrate(message.text)
+			s=sympy.integrate(message.text.split(', ')[0], message.text.split(', ')[1], message.text.split(', ')[2])
 			lat=sympy.latex(s)
 			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
 			plt.axis('off')
@@ -125,7 +126,7 @@ def handle_integrate(message):
 			bot.send_photo(message.chat.id,photo, s)
 			plt.close()
 	except BaseException:
-		bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
+		bot.send_message(message.chat.id, 'Ошибка при вводе функции!')
 
 @bot.message_handler(commands=['fact'])
 def handle_fact(message):
@@ -216,14 +217,20 @@ def handle_sqrt(message):
 
 @bot.message_handler(commands=['plot'])
 def handle_plot(message):
-
 	func=message.text=rstr(message)
-	but1 =  telebot.types.InlineKeyboardButton(text="Android",callback_data="IOS") 
+	but1 =  telebot.types.InlineKeyboardButton(text="Android",callback_data="IOS")
+	msg = bot.reply_to(message, "Введите левую границу интервала: ")
+#	bot.send_message(message.chat.id,"Введите левую границу интервала: ")
+	bot.register_next_step_handler(msg, next_step)
+
+def next_step(message):
+
 	bot.send_message(message.chat.id,"Введите левую границу интервала: ")
+	m = bot.register_next_step_handler(msg, process_age_step)
+	bot.send_message(message.chat.id,"Введите левую границу интервала:") 
+	bot.send_photo(message.chat.id, photo)
 	photo = graphics.simple_graph(message.text)
 	bot.send_photo(message.chat.id, photo)
-	bot.send_message(message.chat.id,"Введите левую границу интервала: ")
-
 
 @bot.message_handler(commands=['photo'])
 def handle_photo(message):
