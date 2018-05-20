@@ -78,7 +78,13 @@ def handle_diff(message):
 	try:
 		message.text=rstr(message)
 		if(len(message.text)!=0):
-			s=diff(message.text)
+			if (len(message.text.split(', '))==0):
+				k = 1
+				sk = 'x'
+			else: 
+				k=message.text.split(', ')[2]
+				sk=message.text.split(', ')[1]
+			s=diff(message.text.split(', ')[0], sk, k)
 			lat=sympy.latex(s)
 			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
 			plt.axis('off')
