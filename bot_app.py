@@ -121,8 +121,8 @@ def handle_sqrt(message):
 	if(0==0):
 		message.text=str(message)
 		if(len(message.text)!=0):
-			c = complex(message.text.split(' ')[0])
-			n = int(message.text.split(' ')[1])
+			c = complex(message.text.split(" ")[0])
+			n = int(message.text.split(" ")[1])
 			l = math.pow(c.real**2+c.imag**2,1/n)
 			alpha = math.atan(c.imag/c.real)
 			s = ''
