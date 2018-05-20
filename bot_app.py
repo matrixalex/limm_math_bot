@@ -69,7 +69,7 @@ def handle_fact(message):
 		if(len(message.text)!=0):
 			bot.send_message(message.chat.id, numpy.math.factorial(int(s)))
 	except BaseException:
-		bot.send_message(message.chat.id, 'Ошибка')
+		bot.send_message(message.chat.id, 'Ошибка факторизации')
 
 
 @bot.message_handler(commands=['simplify'])
@@ -107,12 +107,33 @@ def handle_apart(message):
 	except BaseException:
 		bot.send_message(message.chat.id, 'Ошибка при вводе дроби!')
 
-@bot.message_handler(commands=['solve'])
+@bot.message_handler(commands=['solve', 'SOLVE'])
 def handle_solve(message):
 	try:
 		message.text=str(message)
 		if(len(message.text)!=0):
 			bot.send_message(message.chat.id, parser.eval_(message.text))
+	except BaseException:
+		bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
+
+@bot.message_handler(commands=['sqrt'])
+def handle_sqrt(message):
+	try:
+		message.text=str(message)
+		if(len(message.text)!=0):
+			c = complex(message.text.split(' ')[0])
+			n = int(message.text.split(' ')[1])
+			l = math.pow(c.real**2+c.imag**2,1/n)
+			alpha = math.atan(c.imag/c.real)
+			s = ''
+			for i in range [0:n-1]:
+				p1 = l*math.cos((alpha+2*math.pi*i)/n)
+				p2 = l*math.sin((alpha+2*math.pi*i)/n)
+				p = complex(p1,p2)
+				if i != n-1:
+					s += p+' , '
+				else: s+= p 
+			bot.send_message(message.chat.id, s)
 	except BaseException:
 		bot.send_message(message.chat.id, 'Ошибка при вводе выражения!')
 
