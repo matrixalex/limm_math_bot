@@ -229,12 +229,12 @@ def handle_plot(message):
 		bot.send_message(message.chat.id, 'Ошибка при вводе функции')
 
 def get_a(message):
-	a = message.text
+	a = int(message.text)
 	bot.send_message(message.chat.id,"Введите правую границу интервала: ")
 	bot.register_next_step_handler(message, get_b)
 
 def get_b(message):
-	b = message.text
+	b = int(message.text)
 	photo = graphics.simple_graph(funct, a, b)
 	bot.send_photo(message.chat.id, photo)
 
