@@ -33,7 +33,7 @@ wolfram_app_id = config.wolfram_app_id
 client = wolframalpha.Client(wolfram_app_id)
 
 
-def str(message): #Удаление команды из строки
+def rstr(message): #Удаление команды из строки
     if message.text[0]=='/':
         if len(message.text)==0:
             bot.send_message(message.chat.id, "Введите аргументы команды!")
@@ -53,13 +53,13 @@ def str(message): #Удаление команды из строки
 
 @bot.message_handler(commands=['echo'])
 def handle_echo(message):
-    message.text=str(message)
+    message.text=rstr(message)
     if(len(message.text)!=0):
         bot.send_message(message.chat.id, message.text)
 
 @bot.message_handler(commands=['diff'])
 def handle_diff(message):
-    message.text=str(message)
+    message.text=rstr(message)
     if(len(message.text)!=0):
         s=simplify(message.text)
         bot.send_message(message.chat.id, diff(message.text))
@@ -67,7 +67,7 @@ def handle_diff(message):
 @bot.message_handler(commands=['fact'])
 def handle_fact(message):
 	try:
-		message.text=str(message)
+		message.text=rstr(message)
 		if(len(message.text)!=0):
 			bot.send_message(message.chat.id, numpy.math.factorial(int(s)))
 	except BaseException:
@@ -77,7 +77,7 @@ def handle_fact(message):
 @bot.message_handler(commands=['simplify'])
 def handle_simplify(message):
 	try:
-		message.text=str(message)
+		message.text=rstr(message)
 		if(len(message.text)!=0):
 			init_printing()
 			s=simplify(message.text)
@@ -95,7 +95,7 @@ def handle_simplify(message):
 @bot.message_handler(commands=['apart'])
 def handle_apart(message):
 	try:
-		message.text=str(message)
+		message.text=rstr(message)
 		if(len(message.text)!=0):
 			s=simplify(message.text)
 			lat=sympy.printing.latex(s)
@@ -112,7 +112,7 @@ def handle_apart(message):
 @bot.message_handler(commands=['solve', 'SOLVE'])
 def handle_solve(message):
 	try:
-		message.text=str(message)
+		message.text=rstr(message)
 		if(len(message.text)!=0):
 			bot.send_message(message.chat.id, parser.eval_(message.text))
 	except BaseException:
@@ -120,7 +120,7 @@ def handle_solve(message):
 
 @bot.message_handler(commands=['sqrt'])
 def handle_sqrt(message):
-		message.text=str(message)
+		message.text=rstr(message)
 		if(len(message.text)!=0):
 			hui = message.text.split(" ")[0]
 			c = complex(hui)
@@ -135,13 +135,13 @@ def handle_sqrt(message):
 				k = p2/abs(p2)
 				out = ''
 				if (p1!=0):
-					out = out + p1
+					out = out + str(p1)
 				if (k==1): 
 					out = out + '+'
 				else:
 					out = out + '-'
 				if (p2!=0):
-					out = out + p2 + '*j'
+					out = out + str(p2) + '*j'
 				if (len(out)==0): 
 					out = '0'
 				if i != n-1:
@@ -154,7 +154,7 @@ def handle_sqrt(message):
 @bot.message_handler(commands=['plot'])
 def handle_plot(message):
 
-	func=message.text=str(message)
+	func=message.text=rstr(message)
 	but1 =  telebot.types.InlineKeyboardButton(text="Android",callback_data="IOS") 
 	bot.send_message(message.chat.id,"Введите левую границу интервала: ")
 	photo = graphics.simple_graph(message.text)
@@ -170,7 +170,7 @@ def handle_photo(message):
 @bot.message_handler(commands=['animate'])
 def handle_animate(message):
 	try:
-		message.text=str(message)
+		message.text=rstr(message)
 		if(len(message.text)!=0):
 			if 'z' in message.text:
 				bot.send_message(message.chat.id, "Поверхность должна быть задана в явном виде!")
