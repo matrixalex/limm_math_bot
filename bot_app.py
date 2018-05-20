@@ -80,7 +80,7 @@ def handle_together(message):
 		if(len(message.text)!=0):
 			s=sympy.together(message.text)
 			lat=sympy.latex(s)
-			plt.text(0, 0.6, r"$%s$" % s, fontsize = 50)
+			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
 			plt.axis('off')
 			plt.savefig('plot.png')
 			photo = open('plot.png', 'rb')
@@ -96,7 +96,7 @@ def handle_integrate(message):
 		if(len(message.text)!=0):
 			s=sympy.integrate(message.text)
 			lat=sympy.latex(s)
-			plt.text(0, 0.6, r"$%s$" % s, fontsize = 50)
+			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
 			plt.axis('off')
 			plt.savefig('plot.png')
 			photo = open('plot.png', 'rb')
@@ -122,7 +122,7 @@ def handle_simplify(message):
 		if(len(message.text)!=0):
 			s=simplify(message.text)
 			lat=sympy.latex(s)
-			plt.text(0, 0.6, r"$%s$" % s, fontsize = 50)
+			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
 			plt.axis('off')
 			plt.savefig('plot.png')
 			photo = open('plot.png', 'rb')
