@@ -117,7 +117,7 @@ def handle_integrate(message):
 	try:
 		message.text=rstr(message)
 		if(len(message.text)!=0):
-			s=sympy.integrate(message.text.split(', ')[0], message.text.split(', ')[1], message.text.split(', ')[2])
+			s=sympy.integrate(message.text)
 			lat=sympy.latex(s)
 			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
 			plt.axis('off')
