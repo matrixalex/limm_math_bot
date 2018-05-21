@@ -117,12 +117,13 @@ def handle_integrate(message):
 	try:
 		message.text=rstr(message)
 		if(len(message.text)!=0):
+			plt.close()
 			s=sympy.integrate(message.text)
 			lat=sympy.latex(s)
 			plt.text(0, 0.6, r"$%s$" % lat, fontsize = 50)
 			plt.axis('off')
-			plt.savefig('plot.png')
-			photo = open('plot.png', 'rb')
+			plt.savefig('int.png')
+			photo = open('int.png', 'rb')
 			bot.send_photo(message.chat.id,photo, s)
 			plt.close()
 	except BaseException:
@@ -171,7 +172,7 @@ def handle_apart(message):
 	except BaseException:
 		bot.send_message(message.chat.id, 'Ошибка при вводе дроби!')
 
-@bot.message_handler(commands=['solve', 'SOLVE'])
+@bot.message_handler(commands=['solve'])
 def handle_solve(message):
 	try:
 		message.text=rstr(message)
@@ -221,14 +222,14 @@ b=10
 @bot.message_handler(commands=['plot'])
 def handle_plot(message):
 	try:
-		funct=message.text=rstr(message)
-		but1 =  telebot.types.InlineKeyboardButton(text="Android",callback_data="IOS")
-		bot.send_message(message.chat.id, "Введите левую границу интервала: ")
-		bot.register_next_step_handler(message, get_a)
+		message.text=rstr(message)
+		#but1 =  telebot.types.InlineKeyboardButton(text="Android",callback_data="IOS")
+		photo = graphics.simple_graph(funct, message.text)
+		bot.send_photo(message.chat.id, photo)
 	except BaseException:
 		bot.send_message(message.chat.id, 'Ошибка при вводе функции')
 
-def get_a(message):
+'''def get_a(message):
 	a = int(message.text)
 	bot.send_message(message.chat.id,"Введите правую границу интервала: ")
 	bot.register_next_step_handler(message, get_b)
@@ -236,7 +237,7 @@ def get_a(message):
 def get_b(message):
 	b = int(message.text)
 	photo = graphics.simple_graph(funct, a, b)
-	bot.send_photo(message.chat.id, photo)
+	bot.send_photo(message.chat.id, photo)'''
 
 @bot.message_handler(commands=['photo'])
 def handle_photo(message):

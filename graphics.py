@@ -66,8 +66,12 @@ def d3a2string2func(string):
     return func
 
 
-def simple_graph (message, a, b): #Отправка графика
-	func = string2func(message)
+def simple_graph (string): #Отправка графика
+	temp= string.split(', ')
+	strfunc = temp[0]
+	a = int(temp[1])
+	b = int(temp[2])
+	func = string2func(strfunc)
 	x = np.linspace(a,b, 250)
 	plt.plot(x, func(x))
 	plt.xlim(a, b)
