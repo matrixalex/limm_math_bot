@@ -66,7 +66,7 @@ def d3a2string2func(string):
     return func
 
 
-def simple_graph (string): #Отправка графика
+def simple_graph (string): 
 	temp= string.split(', ')
 	strfunc = temp[0]
 	a = int(temp[1])
