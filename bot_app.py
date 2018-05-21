@@ -223,7 +223,6 @@ b=10
 def handle_plot(message):
 	try:
 		message.text=rstr(message)
-		#but1 =  telebot.types.InlineKeyboardButton(text="Android",callback_data="IOS")
 		photo = graphics.simple_graph (message.text)
 		bot.send_photo(message.chat.id, photo)
 	except BaseException:
